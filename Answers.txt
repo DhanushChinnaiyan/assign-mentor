@@ -1,14 +1,21 @@
 1)Write API to create Mentor:
-
+https://assign-mentor-beryl.vercel.app/mentor/add
 
 2)Write API to create Student:
+https://assign-mentor-beryl.vercel.app/student/add
 
 3)Write API to Assign a student to Mentor:
-   (i)Select one mentor and Add multiple Student
-   (ii)A student who has a mentor should not be shown in List
+   (i)Select one mentor and Add multiple Student:
+   https://assign-mentor-beryl.vercel.app/mentor/assignstudents/64424133359b000b76c2df4d
+
+   (ii)A student who has a mentor should not be shown in List:
+   https://assign-mentor-beryl.vercel.app/student/list/mentorunassigned
 
 4)Select One Student and Assign one Mentor:
+https://assign-mentor-beryl.vercel.app/student/assignmentor/64424a6d1b8b102e417c5a6c
 
 5)Write API to show all students for a particular mentor:
+https://assign-mentor-beryl.vercel.app/student/644240d3359b000b76c2df40
 
-6)Write an API to show the previously assigned mentor for a particular student.
+6)Write an API to show the previously assigned mentor for a particular student:
+https://assign-mentor-beryl.vercel.app/student/previouschanges/64424a431b8b102e417c5a5d
