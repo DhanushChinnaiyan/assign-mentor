@@ -5,7 +5,6 @@ import { Mentor } from '../Modules/Mentor.js'
 const router = express.Router()
 
 // QN:5-show all students for a particular mentor
-// get all Students
 router.get("/:id",async(request,response)=>{
     try {
         const mentor = await Mentor.findById({_id:request.params.id})
@@ -99,7 +98,7 @@ router.put("/assignmentor/:id", async (request, response) => {
     }
   });
 
-//  QN:5-Write an API to show the previously assigned mentor for a particular student.
+//  QN:6-Write an API to show the previously assigned mentor for a particular student.
 router.get("/previouschanges/:id",async(request,response)=>{
     try {
         const students = await Student.findById({_id:request.params.id})
