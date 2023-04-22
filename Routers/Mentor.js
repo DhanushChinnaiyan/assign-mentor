@@ -52,6 +52,21 @@ router.post("/add", async (request, response) => {
 
 router.put("/assignstudents/:id", async (request, response) => {
   try {
+    const students = [];
+
+    request.body.Students.map((studentsName) => {
+      students.push(studentsName);
+    });
+ 
+    await Mentor.updateMany(
+      {Students:{$in:students}},
+      {$set:{
+        Students:[]
+      }},
+      {new:true}
+
+    )
+
     const assignStudents = await Mentor.findByIdAndUpdate(
       { _id: request.params.id },
       {
@@ -61,20 +76,20 @@ router.put("/assignstudents/:id", async (request, response) => {
       },
       { new: true }
     );
-    const students = [];
+    
     const mentorname = await Mentor.findById(request.params.id);
 
-    assignStudents.Students.map((studentsName) => {
-      students.push(studentsName);
-    });
+    
 
    const previousMentor = await Student.find({StudentName:{$in:students}})
-  
+ 
     const assignMentor = await Student.updateMany(
-      { StudentName: { $in: students } },
+      { StudentName: { $in: students }
+    },
       {
         $set: {
-          Mentor: mentorname.MentorName,
+          CurrentMentor: mentorname.MentorName,
+          PreviousMentor:previousMentor[0].CurrentMentor
         }
       },
       { new: true }

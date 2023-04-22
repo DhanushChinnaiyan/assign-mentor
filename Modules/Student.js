@@ -11,8 +11,11 @@ const studentSchema = mongoose.Schema(
             type:String,
             required:true
         },
-        Mentor:{
-            type:[]
+        CurrentMentor:{
+            type:String
+        },
+        PreviousMentor:{
+            type:String
         }
     }
 )

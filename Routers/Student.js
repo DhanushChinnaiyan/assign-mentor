@@ -59,7 +59,7 @@ router.get("/list/mentorunassigned",async(request,response)=>{
 
         const lists = []
         students.map((list)=>{
-            if(list.Mentor.length===0){
+            if(!list.CurrentMentor){
                 lists.push(list)
             }
         })
@@ -77,15 +77,18 @@ router.get("/list/mentorunassigned",async(request,response)=>{
 // QN:4-Select One Student and Assign One mentor
 router.put("/assignmentor/:id", async (request, response) => {
     try {
+        const previousMentor = await Student.findById(request.params.id)
       const assignMentor = await Student.findByIdAndUpdate(
         { _id: request.params.id },
         {
           $set: {
-            Mentor: request.body.Mentor,
+            CurrentMentor: request.body.CurrentMentor,
+            PreviousMentor:previousMentor.CurrentMentor
           },
         },
         { new: true }
       );
+
  
       if (!assignMentor) {
         return response.status(400).json({ message: "Error assigning mentor" });
